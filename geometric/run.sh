@@ -1,3 +1,4 @@
+#!/bin/bash
 ant build
 cd bin
 echo

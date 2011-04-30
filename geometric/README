@@ -1,0 +1,12 @@
+Geometric algorithms
+
+ConvexHull.java - contains implementations of Graham scan and Jarvis March algorithms.
+
+LineSegment.java - detects line intersections.
+
+MainProgram.java - test driver.
+
+To build and execute the code type ./run.sh
+
+
+
