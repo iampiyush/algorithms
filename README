@@ -1,4 +1,1 @@
-Geometric algorithms 
--Find convex hull using Jarvis March and Garahm Scan algorithms.
-
--Detect line intersections.
+Base directory for algorithm you typically find in an undergraduate algorithms class.
