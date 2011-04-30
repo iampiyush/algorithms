@@ -48,7 +48,7 @@ public class LineSegment {
 	    return true;
 	if (direction3 == 0 && pointOnLine(b1, b2, a1))
 	    return true;
-	if (direction1 == 0 && pointOnLine(b1, b2, a2))
+	if (direction4 == 0 && pointOnLine(b1, b2, a2))
 	    return true;
 	    	
 	return false;
