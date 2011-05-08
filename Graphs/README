@@ -1,0 +1,6 @@
+Graph algorithm code that demonstrates the following:
+
+1) Printing connected components.
+2) Printing topolical sort.
+
+MainProgram.java is the test driver - to run the code, execute the run.sh script.
