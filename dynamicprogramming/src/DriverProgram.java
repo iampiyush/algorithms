@@ -14,8 +14,11 @@ public class DriverProgram {
 
 	String str = "abcd";
 	Subsets c = new Subsets();
+	
+	System.out.println("Print top down");
 	c.printTopdown(str);
-
+	
+	System.out.println("\n\nPrint bottom up\n\n");
 	c.printBottomup(str);
     }
 }
