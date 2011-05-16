@@ -37,33 +37,36 @@ public class Subsets {
     }
     
     /*
-      Prints all subsets of str from a bottom down approach, just calculating
-      the subset.
+      Prints all subsets of str without generating the actual recursion tree.
       
-      Think of each leaf in the top down approach as being a binary number.
-      0 means the item at that bit position isn't in the subset, 1 means it is 
-      in the subset.  e.g. If abc is the string, then 001 maps to "c", 010 maps
-      to "b", 011 maps to "bc", ..., 111 maps to abc.
-
-      The bottom up approach starts at 1 to 2^n - 1, mapping the bit pattern in each
-      number to a subset of str.
+      Think of each leaf in the top down approach as being a number from 0 to 2^n - 1.
+      n is the number of characters in the string. So for a three character string like
+      "abc" the leaves are 0 to 7. Now think of the number in its binary representation 
+      with n bits. So 000, 001, 010, 011, ..., 111.  Each bit maps to the character at
+      that location. If the bit is 0, the character isn't in the subset. If the bit
+      is 1, the character is in the subset. If abc is the string, then 
+      001 maps to the subset "c", 010 maps to "b", 011 maps to "bc", ..., 111 maps to "abc".
+      
      */
     public void printBottomup(String str) {
 	double numberSubsets = Math.pow(2, str.length()) - 1;
-    
-	for (int i = 1; i <= numberSubsets; ++i) {
+    	for (int i = 0; i <= numberSubsets; ++i) {
 	    printBitPattern(str, i);
 	}
     }
     
     private void printBitPattern(String str, int n) {
-	StringBuilder subset = new StringBuilder();
-	for (int i = str.length() - 1; i >= 0; --i) {
-	    if ((n & 1) == 1) {
-		subset.append(str.charAt(i));
+	int len = str.length();
+	int bit = len-1;
+	Stack<Character> subset = new Stack<Character>();
+
+	for (int i = 0; i < len; ++i) {
+	    if (((n>>bit) & 1) == 1) {
+		subset.push(str.charAt(i));
 	    }
-	    n >>= 1;
+	    bit--;
 	}
+
 	System.out.println(subset.toString());
-    }    
+    }
 }
