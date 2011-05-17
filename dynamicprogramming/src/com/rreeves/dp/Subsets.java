@@ -1,6 +1,5 @@
 package com.rreeves.dp;
 
-import java.lang.StringBuilder;
 import java.util.Stack;
 import java.lang.Math;
 
@@ -49,16 +48,18 @@ public class Subsets {
       
      */
     public void printBottomup(String str) {
+	Stack<Character> stack = new Stack<Character>();
+
 	double numberSubsets = Math.pow(2, str.length()) - 1;
     	for (int i = 0; i <= numberSubsets; ++i) {
-	    printBitPattern(str, i);
+	    printBitPattern(str, i, stack);
 	}
     }
     
-    private void printBitPattern(String str, int n) {
+    private void printBitPattern(String str, int n, Stack<Character> subset) {
 	int len = str.length();
 	int bit = len-1;
-	Stack<Character> subset = new Stack<Character>();
+	subset.clear();
 
 	for (int i = 0; i < len; ++i) {
 	    if (((n>>bit) & 1) == 1) {
