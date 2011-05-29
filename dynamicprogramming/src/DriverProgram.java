@@ -1,5 +1,8 @@
 import com.rreeves.dp.Subsets;
 import com.rreeves.dp.Knapsack;
+import com.rreeves.dp.MatrixMultiplication;
+import com.rreeves.dp.Matrix;
+
 
 public class DriverProgram {
 
@@ -31,8 +34,24 @@ public class DriverProgram {
 	max = ks.fillSackFaster();
 	System.out.println("Max = " + max);
     }
+    
+    private static void matrixMultiplicationTest() {
+	Matrix []matrices = new Matrix[5];
+	
+	matrices[0] = new Matrix(10,20);
+	matrices[1] = new Matrix(20,10);
+	matrices[2] = new Matrix(10,15);
+	matrices[3] = new Matrix(15,20);
+	matrices[4] = new Matrix(20,10);
+	
+	//Should return 7500
+	MatrixMultiplication m = new MatrixMultiplication(matrices);
+	int result = m.minimumMultiplications();
+	
+	System.out.println("Minimum computation required to multiply matrices is " + result);
+    }
 
     public static void main(String []args) {
-	knapsackTest();
+	matrixMultiplicationTest();
     }
 }
