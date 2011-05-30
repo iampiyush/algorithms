@@ -52,12 +52,10 @@ public class MatrixMultiplication {
     }
     
     /*
-      Uses knowledge of the recursive structure from computeMinRecursive to
-      recreate the subproblems from the bottom up.  First the base case subproblems are
-      generated. 
-
-      Then table is filled in diagonally.
-
+      Computes answer from the bottom up.  First the base case subproblems are
+      generated. Then table is filled in diagonally, computing subproblems from the bottom up
+      until the entire subproblem table is filled in.
+      
       Time complexity - O(n^3)
      */
     private int computeMinBottomup(int i, int j) {
