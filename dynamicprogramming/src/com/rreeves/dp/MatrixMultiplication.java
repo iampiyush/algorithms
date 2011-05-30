@@ -2,13 +2,20 @@ package com.rreeves.dp;
 
 public class MatrixMultiplication {
     private Matrix []mMatrices;
-    
+   
     public MatrixMultiplication(Matrix[] matrices) {
 	mMatrices = matrices;
     }
     
     public int computeMin() {
-	return computeMinRecursive(1, mMatrices.length);
+	int [][]table = new int[mMatrices.length+1][mMatrices.length+1];
+	for (int i = 0; i < table.length; ++i) {
+	    for (int j = 0; j < table[0].length; ++j) {
+		table[i][j] = -1;//Using -1 for uninitialized
+	    }
+	}
+
+	return computeMinRecursive(1, mMatrices.length, table);
     }
 
     public int computeMinFaster() {
@@ -23,25 +30,23 @@ public class MatrixMultiplication {
       multiplications of k+1 to j. Now calculate the cost of multiplying (i, k) and (k+1, j) together.
       
       Do this for all k, i<=k<j and take minimum.
-      
-      Non-memoized version, runs in exponential time.
 
-      //TODO - memoize
+      Sub problems are saved in a table to prevent duplicate computation. 
      */
-    private int computeMinRecursive(int i, int j) {
-	if (i == j) {
+    private int computeMinRecursive(int i, int j, int [][]table) {
+	if (i == j) 
 	    return 0;
-	}
-
-	int minComputations = Integer.MAX_VALUE;
+	
+	int min = Integer.MAX_VALUE;
 
 	for (int k = i; k < j; ++k) {
-	    int left = computeMinRecursive(i, k);
-	    int right = computeMinRecursive(k+1, j);
-	    int product = left + right + multiply(i, k, j);
-	   
-	    if (product < minComputations)
-		minComputations = product;
+	    if (table[i][k] == -1) 
+		table[i][k] = computeMinRecursive(i, k, table);
+
+	    if (table[k+1][j] == -1)
+		table[k+1][j] = computeMinRecursive(k+1, j, table);
+
+	    min = Math.min(min, table[i][k] + table[k+1][j] + multiply(i, k, j));
 	}
 	return minComputations;
     }
