@@ -3,33 +3,38 @@ package com.rreeves.dp;
 public class MatrixMultiplication {
     private Matrix []mMatrices;
    
+    public enum Type{
+	TOP_DOWN, BOTTOM_UP
+    }
+
     public MatrixMultiplication(Matrix[] matrices) {
 	mMatrices = matrices;
     }
     
-    public int computeMin() {
-	int [][]table = new int[mMatrices.length+1][mMatrices.length+1];
-	for (int i = 0; i < table.length; ++i) {
-	    for (int j = 0; j < table[0].length; ++j) {
-		table[i][j] = -1;//Using -1 for uninitialized
-	    }
+    public int computeMin(Type type) {
+	if (type == Type.TOP_DOWN) {
+	    int [][]table = new int[mMatrices.length+1][mMatrices.length+1];
+	    initTable(table);
+	    return computeMinRecursive(1, mMatrices.length, table);
 	}
-
-	return computeMinRecursive(1, mMatrices.length, table);
-    }
-
-    public int computeMinFaster() {
+	
 	return computeMinBottomup(1, mMatrices.length);
     }
-    
+
 
     /*
-      Calculates the minimum multiplications needed to multiply Matrices in mMatrices.
+      Calculates the minimum multiplications needed to multiply an array of matrices. Think of 
+      how to arrange parentheses in an array of matrices: A1, A2, A3, A4.
+
+      ((A1) (A2, A3, A4)) 
+      ((A1, A2) (A3, A4)),
+      etc.. 
+
+      This algorithm determines the arrangement of parentheses that produces the minimum number of multiplications.
       
-      The idea is to calculate the multiplications of matrices i to k, then calculate the 
-      multiplications of k+1 to j. Now calculate the cost of multiplying (i, k) and (k+1, j) together.
-      
-      Do this for all k, i<=k<j and take minimum.
+      The idea is to calculate the multiplications of matrices i to k, calculate the 
+      multiplications of k+1 to j, then calculate how many multiplications are needed to 
+      multiply the resulting matrices of (i,k) and (k+1, j). Do this for all k, i<=k<j, and take minimum.
 
       Sub problems are saved in a table to prevent duplicate computation. 
      */
@@ -48,7 +53,7 @@ public class MatrixMultiplication {
 
 	    min = Math.min(min, table[i][k] + table[k+1][j] + multiply(i, k, j));
 	}
-	return minComputations;
+	return min;
     }
     
     /*
@@ -64,7 +69,6 @@ public class MatrixMultiplication {
 	    table[t][t] = 0;
 	
 	for (int diag = i+1; diag <= j; ++diag) {//For each diagonal
-	   
 	    int di = i;
 	    
 	    for (int dj = diag; dj <= j; ++dj) {//Move down diagonal, top left to bottom right.
@@ -86,4 +90,13 @@ public class MatrixMultiplication {
     private int multiply(int i, int k, int j) {
 	return mMatrices[i-1].rows * mMatrices[k-1].cols * mMatrices[j-1].cols;
     }
+    
+    private void initTable(int [][]table) {
+	for (int i = 0; i < table.length; ++i) {
+	    for (int j = 0; j < table[0].length; ++j) {
+		table[i][j] = -1;
+	    }
+	}
+    }
+
 }

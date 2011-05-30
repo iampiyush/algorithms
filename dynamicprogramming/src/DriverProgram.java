@@ -44,11 +44,17 @@ public class DriverProgram {
 	matrices[3] = new Matrix(15,20);
 	matrices[4] = new Matrix(20,10);
 	
-	//Should return 7500
+
 	MatrixMultiplication m = new MatrixMultiplication(matrices);
-	int result = m.minimumMultiplications();
-	
+
+	//Should return 7500
+	int result = m.computeMin(MatrixMultiplication.Type.TOP_DOWN);
 	System.out.println("Minimum computation required to multiply matrices is " + result);
+
+	result = m.computeMin(MatrixMultiplication.Type.BOTTOM_UP);
+	System.out.println("Minimum computation required to multiply matrices is " + result);
+
+	
     }
 
     public static void main(String []args) {
