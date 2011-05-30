@@ -1,7 +1,6 @@
 Dymanic programming exercises
 
--Knapsack
+-Knapsack. 0/1. 
 
--Matrix Multiplication (best order to mulitply matrices)
-
+-Matrix Multiplication - compute how to parenthesize an array of matrices such that the number of multiplications is minimized. 
 
