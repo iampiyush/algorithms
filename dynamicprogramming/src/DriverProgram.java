@@ -54,6 +54,7 @@ public class DriverProgram {
 	result = m.computeMin(MatrixMultiplication.Type.BOTTOM_UP);
 	System.out.println("Minimum computation required to multiply matrices is " + result);
 
+	m.print();
 	
     }
 

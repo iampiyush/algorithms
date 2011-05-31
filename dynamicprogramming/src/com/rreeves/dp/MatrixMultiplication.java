@@ -21,6 +21,50 @@ public class MatrixMultiplication {
 	return computeMinBottomup(1, mMatrices.length);
     }
 
+    public void print() {
+	int [][]kMatrix = new int[mMatrices.length+1][mMatrices.length+1];
+	
+	computeMinWithParens(1, mMatrices.length, kMatrix);
+	printParens(1, mMatrices.length, kMatrix);
+	
+	System.out.println("");
+    }
+   
+    private void printParens(int i, int j, int [][]kMatrix) {
+	if (i == j) {
+	    System.out.print("m" + String.valueOf(i));
+	    return;
+	}
+
+	System.out.print("(");
+	int k = kMatrix[i][j];
+
+	printParens(i, k, kMatrix);
+	printParens(k + 1, j, kMatrix);
+	
+	System.out.print(")");
+    }
+   
+    private int computeMinWithParens(int i, int j, int [][]kMatrix){
+	if (i == j) {
+	    return 0;
+	}
+	
+	int min = Integer.MAX_VALUE;
+
+	for (int k = i; k < j; ++k) {
+	    int left = computeMinWithParens(i, k, kMatrix);
+	    int right = computeMinWithParens(k+1, j, kMatrix);
+	    
+	    int total = left + right + multiply(i, k, j);
+
+	    if (total < min) {
+		min = total;
+		kMatrix[i][j] = k;//Mark where the cut occurs so we can reconstruct later.
+	    }
+	}
+	return min;
+    } 
 
     /*
       Calculates the minimum multiplications needed to multiply an array of matrices. Think of 
@@ -39,8 +83,9 @@ public class MatrixMultiplication {
       Sub problems are saved in a table to prevent duplicate computation. 
      */
     private int computeMinRecursive(int i, int j, int [][]table) {
-	if (i == j) 
+	if (i == j)  {
 	    return 0;
+	}
 	
 	int min = Integer.MAX_VALUE;
 
@@ -56,6 +101,10 @@ public class MatrixMultiplication {
 	return min;
     }
     
+    private void printParen(int i, int j) {
+	System.out.print("(" + String.valueOf(i) + "," + String.valueOf(j) + ")");
+    }
+
     /*
       Computes answer from the bottom up.  First the base case subproblems are
       generated. Then table is filled in diagonally, computing subproblems from the bottom up
@@ -98,5 +147,4 @@ public class MatrixMultiplication {
 	    }
 	}
     }
-
 }
