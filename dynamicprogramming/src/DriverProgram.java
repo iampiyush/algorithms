@@ -2,7 +2,7 @@ import com.rreeves.dp.Subsets;
 import com.rreeves.dp.Knapsack;
 import com.rreeves.dp.MatrixMultiplication;
 import com.rreeves.dp.Matrix;
-
+import com.rreeves.dp.Calculator;
 
 public class DriverProgram {
 
@@ -57,8 +57,15 @@ public class DriverProgram {
 	m.print();
 	
     }
+    
+    private static void expressionTest() {
+	Calculator c = new Calculator("5 + 7 * 10 + 3 / 2");
+	double val = c.maximize();
+	
+	System.out.println(val);
+    }
 
     public static void main(String []args) {
-	matrixMultiplicationTest();
+	expressionTest();
     }
 }

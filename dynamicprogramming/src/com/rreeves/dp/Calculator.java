@@ -26,14 +26,17 @@ public class Calculator {
        
        Subproblems are stored in table to avoid duplicate computations.
     */
-    public double calcMax() {
-	double [][]table = new double[mOperands.size()+1][mOperands.size()+1];
+    public double maximize() {
+	int numberOperands = mOperands.size();
+	double [][]table = new double[numberOperands+1][numberOperands+1];
 	for (int i = 0; i < table.length; ++i) {
 	    for (int j = 0; j < table[0].length; ++j) {
 		table[i][j] = -1;
 	    }
 	}
-	return calcMaxRecursive(1, mOperands.size(), table);
+	
+	int [][]mark = new int[numberOperands][numberOperands];
+	return calcMaxRecursive(1, numberOperands, table);
     }
     
     private double calcMaxRecursive(int i, int j, double[][]table) {
