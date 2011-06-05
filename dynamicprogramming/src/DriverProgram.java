@@ -5,6 +5,7 @@ import com.rreeves.dp.Matrix;
 import com.rreeves.dp.Calculator;
 import com.rreeves.dp.LongestPalindrome;
 import com.rreeves.dp.RodCutter;
+import com.rreeves.dp.BinomialCoefficients;
 
 public class DriverProgram {
 
@@ -67,14 +68,14 @@ public class DriverProgram {
 	System.out.println(val);
     }
     
-    // public static void longestPalindromeTest() {
-    // 	String s = "abcded_asdfghjkl";
+    public static void longestPalindromeTest() {
+    	String s = "abcdefghijka";
 
-    // 	LongestPalindrome lp = new LongestPalindrome();
-    // 	int ret = lp.calculate(s);
+    	LongestPalindrome lp = new LongestPalindrome();
+    	int ret = lp.calculate(s);
 	
-    // 	System.out.print("Longest palindrome in " + s + " is " + ret);
-    // }
+    	System.out.print("Longest palindrome in " + s + " is " + ret);
+    }
 
     private static void rodCuttingTest() {
 	int[] prices = {1,5,8,9,10,17,17,20,24,30};
@@ -86,7 +87,20 @@ public class DriverProgram {
 	System.out.println("Max revenue possible is " + revenue);
     }
 
+    private static void binomialCoefficientsTest() {
+	BinomialCoefficients bc = new BinomialCoefficients();
+
+	for (int n = 1; n < 10; ++n) {
+	    for (int k = 1; k < 10; ++k) {
+		System.out.print(bc.calculate(n, k));
+		System.out.print("\t");
+	    }
+	    System.out.println("");
+	}
+	
+    }
+
     public static void main(String []args) {
-	rodCuttingTest();
+	binomialCoefficientsTest();
     }
 }
