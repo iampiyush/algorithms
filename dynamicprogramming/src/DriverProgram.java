@@ -3,6 +3,8 @@ import com.rreeves.dp.Knapsack;
 import com.rreeves.dp.MatrixMultiplication;
 import com.rreeves.dp.Matrix;
 import com.rreeves.dp.Calculator;
+import com.rreeves.dp.LongestPalindrome;
+import com.rreeves.dp.RodCutter;
 
 public class DriverProgram {
 
@@ -64,8 +66,27 @@ public class DriverProgram {
 	
 	System.out.println(val);
     }
+    
+    // public static void longestPalindromeTest() {
+    // 	String s = "abcded_asdfghjkl";
+
+    // 	LongestPalindrome lp = new LongestPalindrome();
+    // 	int ret = lp.calculate(s);
+	
+    // 	System.out.print("Longest palindrome in " + s + " is " + ret);
+    // }
+
+    private static void rodCuttingTest() {
+	int[] prices = {1,5,8,9,10,17,17,20,24,30};
+	
+	RodCutter rc = new RodCutter();
+
+	int revenue = rc.maximizeCuts(prices, 5);
+
+	System.out.println("Max revenue possible is " + revenue);
+    }
 
     public static void main(String []args) {
-	expressionTest();
+	rodCuttingTest();
     }
 }
