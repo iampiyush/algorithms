@@ -6,6 +6,7 @@ import com.rreeves.dp.Calculator;
 import com.rreeves.dp.LongestPalindrome;
 import com.rreeves.dp.RodCutter;
 import com.rreeves.dp.BinomialCoefficients;
+import com.rreeves.dp.Partition;
 
 public class DriverProgram {
 
@@ -99,8 +100,19 @@ public class DriverProgram {
 	}
 	
     }
+    
+    private static void partitionTest() {
+	int[] arr = {2,1,3,3,3};
+	Partition p = new Partition();
+	boolean ret = p.canPartition(arr);
+
+	if (ret)
+	    System.out.println("arr can be partitioned into two subsets of equal value");
+	else
+	    System.out.println("arr cannot be partitioned into two subsets of equal value");
+    }
 
     public static void main(String []args) {
-	binomialCoefficientsTest();
+	partitionTest();
     }
 }
