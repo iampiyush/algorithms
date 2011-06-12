@@ -7,6 +7,7 @@ import com.rreeves.dp.LongestPalindrome;
 import com.rreeves.dp.RodCutter;
 import com.rreeves.dp.BinomialCoefficients;
 import com.rreeves.dp.Partition;
+import com.rreeves.dp.LCS;
 
 public class DriverProgram {
 
@@ -19,7 +20,6 @@ public class DriverProgram {
 	
 	System.out.println("\n\nPrint bottom up\n\n");
 	c.printBottomup(str);
-
     }
     
     private static void knapsackTest() {
@@ -102,7 +102,7 @@ public class DriverProgram {
     }
     
     private static void partitionTest() {
-	int[] arr = {2,1,3,3,3};
+	int[] arr = {2,1,3,3,3,3,3};
 	Partition p = new Partition();
 	boolean ret = p.canPartition(arr);
 
@@ -111,8 +111,21 @@ public class DriverProgram {
 	else
 	    System.out.println("arr cannot be partitioned into two subsets of equal value");
     }
+    
+    public static void longestIncreasingSubsequenceTest() {
+	int []arr = {0, 10, 1, 2, 3, 9, 0, 9, 0, 0, 10, 12, 15};
+	int ret = 0;//todo
+	System.out.println("Longest increasing subsequence is " + ret);
+    }
+    
+    public static void longestCommonSubsequenceTest() {
+	LCS lcs = new LCS();
+	int ret = lcs.calculate("Republican", "Democrat");
+	
+	System.out.println("LCS = " + ret);
+    }
 
     public static void main(String []args) {
-	partitionTest();
+	longestCommonSubsequenceTest();
     }
 }
