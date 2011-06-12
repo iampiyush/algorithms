@@ -8,6 +8,7 @@ import com.rreeves.dp.RodCutter;
 import com.rreeves.dp.BinomialCoefficients;
 import com.rreeves.dp.Partition;
 import com.rreeves.dp.LCS;
+import com.rreeves.dp.LIS;
 
 public class DriverProgram {
 
@@ -113,8 +114,12 @@ public class DriverProgram {
     }
     
     public static void longestIncreasingSubsequenceTest() {
-	int []arr = {0, 10, 1, 2, 3, 9, 0, 9, 0, 0, 10, 12, 15};
-	int ret = 0;//todo
+	LIS lis = new LIS();
+
+	int []arr = {0, 10, 1, 2, 3, 9, 0, 9, 0, 0, 10, 12, 15, 0};
+	
+	int ret = lis.calculate(arr);
+	
 	System.out.println("Longest increasing subsequence is " + ret);
     }
     
@@ -126,6 +131,6 @@ public class DriverProgram {
     }
 
     public static void main(String []args) {
-	longestCommonSubsequenceTest();
+	longestIncreasingSubsequenceTest();
     }
 }
