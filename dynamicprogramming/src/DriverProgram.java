@@ -9,6 +9,7 @@ import com.rreeves.dp.BinomialCoefficients;
 import com.rreeves.dp.Partition;
 import com.rreeves.dp.LCS;
 import com.rreeves.dp.LIS;
+import com.rreeves.dp.Cashier;
 
 public class DriverProgram {
 
@@ -129,8 +130,17 @@ public class DriverProgram {
 	
 	System.out.println("LCS = " + ret);
     }
+    
+    public static void cashierTest() {
+	Cashier c = new Cashier();
+	int amount = 17;
+
+	int ways = c.countMakeChange(amount);
+
+	System.out.println("Given the amount " + String.valueOf(amount) + ", you can make change " + String.valueOf(ways) + " ways");
+    }
 
     public static void main(String []args) {
-	longestIncreasingSubsequenceTest();
+	cashierTest();
     }
 }
