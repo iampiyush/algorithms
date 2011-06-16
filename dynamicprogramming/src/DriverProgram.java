@@ -10,6 +10,7 @@ import com.rreeves.dp.Partition;
 import com.rreeves.dp.LCS;
 import com.rreeves.dp.LIS;
 import com.rreeves.dp.Cashier;
+import com.rreeves.dp.EditDistance;
 
 public class DriverProgram {
 
@@ -139,8 +140,15 @@ public class DriverProgram {
 
 	System.out.println("Given the amount " + String.valueOf(amount) + ", you can make change " + String.valueOf(ways) + " ways");
     }
-
+    
+    public static void editDistanceTest() {
+	EditDistance ed = new EditDistance();
+	int numberEdits = ed.calcDistance("Ryan", "Ryon3");
+	
+	System.out.println("Number of edits = " + String.valueOf(numberEdits));
+    }
+    
     public static void main(String []args) {
-	cashierTest();
+	editDistanceTest();
     }
 }
