@@ -143,7 +143,7 @@ public class DriverProgram {
     
     public static void editDistanceTest() {
 	EditDistance ed = new EditDistance();
-	int numberEdits = ed.calcDistance("Ryan", "Ryon3");
+	int numberEdits = ed.calcDistance("Ryan", "Ri0n3");
 	
 	System.out.println("Number of edits = " + String.valueOf(numberEdits));
     }
