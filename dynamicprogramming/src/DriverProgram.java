@@ -11,9 +11,9 @@ import com.rreeves.dp.LCS;
 import com.rreeves.dp.LIS;
 import com.rreeves.dp.Cashier;
 import com.rreeves.dp.EditDistance;
+import com.rreeves.dp.PhoneNumber;
 
 public class DriverProgram {
-
     private static void printSubsets() {
 	String str = "abcde";
 	Subsets c = new Subsets();
@@ -155,9 +155,13 @@ public class DriverProgram {
 	System.out.println("Number of edits = " + String.valueOf(numberEdits));
     }
     
-    
+    public static void phoneNumberCombinationsTest() {
+	PhoneNumber pn = new PhoneNumber();
+	int []arr = {5,4,1,3,9,6,5,7,1,3};
+	pn.printStrings(arr);
+    }
+
     public static void main(String []args) {
-	editDistanceTest();
-	editDistanceTest2();
+	phoneNumberCombinationsTest();
     }
 }
