@@ -147,8 +147,17 @@ public class DriverProgram {
 	
 	System.out.println("Number of edits = " + String.valueOf(numberEdits));
     }
+
+    public static void editDistanceTest2() {
+	EditDistance ed = new EditDistance();
+	int numberEdits = ed.calcDistanceBottomUp("Ryan", "Ri0n3");
+	
+	System.out.println("Number of edits = " + String.valueOf(numberEdits));
+    }
+    
     
     public static void main(String []args) {
 	editDistanceTest();
+	editDistanceTest2();
     }
 }
