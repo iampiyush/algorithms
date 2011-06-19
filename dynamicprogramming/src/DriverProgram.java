@@ -12,6 +12,8 @@ import com.rreeves.dp.LIS;
 import com.rreeves.dp.Cashier;
 import com.rreeves.dp.EditDistance;
 import com.rreeves.dp.PhoneNumber;
+import com.rreeves.dp.ThreeNumberSum;
+import java.util.Stack;
 
 public class DriverProgram {
     private static void printSubsets() {
@@ -160,8 +162,18 @@ public class DriverProgram {
 	int []arr = {5,4,1,3,9,6,5,7,1,3};
 	pn.printStrings(arr);
     }
+    
+    public static void threeNumbersThatSumTest() {
+	int []arr = {1, 1, 3, 5, 4};
+	
+	ThreeNumberSum tns = new ThreeNumberSum();
+
+	Stack<Integer> numbers = tns.find(arr, 10);
+	if (numbers != null)
+	    System.out.println(numbers.toString());
+    }
 
     public static void main(String []args) {
-	phoneNumberCombinationsTest();
+	threeNumbersThatSumTest();
     }
 }
