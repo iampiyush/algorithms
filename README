@@ -1,2 +1,4 @@
 Contains various algorithms written in Java.
 
+The code is structured with emphasis on showing how an algorithm works, which sometimes isn't exactly the best object oriented design best practice.  Most code contains comments and includes a driver program to exercise the algorithm.
+

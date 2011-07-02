@@ -1,6 +1,150 @@
-Dymanic programming exercises
+This project contains various dynamic programming related exercises. 
 
--Knapsack. 0/1. 
+1) Binomial Coefficients
 
--Matrix Multiplication - compute how to parenthesize an array of matrices such that the number of multiplications is minimized. 
+Recursively calculates the binomial coefficients. Memoized version.
+
+2) Calculator
+
+Calculates how to best place parentheses such that the math expression is maximized. Example: 5 + 7 * 9 would be (5 + 7) * 9
+
+The idea is finding how to group items such that some optimal value is reached. Recursively defined as finding the best way to group items (i...k) and (k+1...j), then combine the results. This is a modification of the matrix multiplication problem.
+
+3) Cashier
+
+Neat algorithm to calculate the number of ways to make change from a set of coins.  
+
+This algorithm is modeled after the knapsack algorithm who recursively consider two possibilities: Selecting coin i and not selecting coin i. When selecting coin i we subtract it from the amount to make change for and recusively evaluate coin i again. When not selecting coin i we recusively move to the next coin i+1. 
+
+The function keeps track of the outstanding amount to make change for with each recursive call.  Successful base case is when that amount is 0. This means we found an exact way to combine coins to make change for amount. In this case we return 1.
+
+Other base cases are when there are no more coins to evaluate and when we subtract a coin from amount and make amount negative. In these cases return 0. 
+
+Returning the sum of both possibilities is the total number of ways to make change.  Algorithm uses memoization.
+
+4) EditDistance
+
+Calculates the minimum number of edits needed to turn word 2 into word 1. This is the classic Edit Distance algorithm explained all over the Internet.  It basically recursively evaluates two strings, stringOne and stringTwo, using indices i and j.
+
+
+if stringOne[i] = stringTwo[i]
+   f(i-1, j-1). Move to next character to evaluate - no edit needed
+
+else we meed to evaluate the possibilties of three edits: deleting, inserting, and substitution.
+
+deleting from stringOne is recursively defined as 1 + f(i-1, j). 
+inserting into stringOne is recursively defined as 1 + f(i, j-1)
+substituting stringTwo[j] into stringOne[i] is recursively defined as 1 + f(i-1, j-1)
+
+Return minimum of the above three edits.
+
+This algorithm includes both a memoized, top down, version and a bottom up version.
+
+5) Knapsack and Knapsack2
+
+Classic knapsack algorithm. These are basically the same algorithm - one evaluates from left to righ, the other right to left. Algorithms are memoized. See code for more details.
+
+6) LCS - longest common substring
+
+Calculates the longest common substring in two strings.  Given stringOne[i] and stringTwo[j], there are two possibilities. The characters at i and j match or they don't match.
+
+If they do match we add 1 + a recursive call to f(i-1, j-1) to evaluate the next set of characters. If they don't match we find the maximum of two possibilities: f(i-1, j) and f(i, j-1).
+
+Base case is when no more characters to evaluate.
+
+Algorithm is memoized.
+
+7) LIS - longest increasing substring
+
+Calculates the longest increasing substring in a string. I wrote this using an integer array, but it's the same idea using any type of array.  
+
+This algorithm has a classic reduction to LSC. The idea here is to sort a copy of the string and find the LCS of the two strings. This will give you the LIS of the string. There's also a faster well known algorithm.
+
+The way I solved it was to solve two problems:
+
+First, what is the longest increasing substring to N. Now what is longest increasing substring to all N. Choose the max. 
+
+Algorithm uses memoization.
+
+8) Longest Subsequence that is a palindrome
+
+This is a modification of the LCS algorithm. Starting i at index 0 and j at the last index, recursively compare for a palindrom i,j. There are two possibilities at i,j.  First if string[i] == string[j]. In this case add 2 and recursively evaluate i+1 and j-1.  1 for character i and 1 for character j.
+
+Second if string[i] != string[j].  In this case we need to evaluate two possibilities: f(i+1, j) and f(i, j-1). Take the maximum of these two possibilities.
+
+The base cases are when i == j and if i > j.  When i == j this evaluates to string[x] == string[x], so return 1. Whe i > j this is invalid so return 0.
+
+Algorithm uses memoization.
+
+9) Matrix multiplication
+
+This algorithm is the same as the Calculator above.
+
+10) Partition
+
+This algorithm determines if an array can be partitioned into two arrays such that the array sums are equal.  The idea here is to use the knapsack algorithm.  Sum all values in the array and divide by 2. Call this value targetSum.  Now use the knapsack algorithm to try to select combinations of items from the array that add up to targetSum.
+
+For each array[i] there are multiple possibilites. First array[i] can be creater than targetSum. In this case move to the next item and do not evaluate array[i]. Another possibility is to select array[i]. In this case subtract array[i] from targetSum and recursively evaluate f(i+1, targetSum-array[i). Another possibility is to not select array[i]. In this case recursively evaluate f(i+1, targetSum).
+
+One base case is when targetSum == 0. In this case we return true because there exists some subset of array that equals targetSum. Another base case is when i > array length. In this case return false, we can't evaluate any more values. Another base case is when targetSum < 0. We've subtracted too much from targetSum.
+
+11) PhoneNumber - Not really a classic DP problem, however it is recursive and demands the same problem solving skills as dp problems.
+
+This algorithm prints all possible character values for a phone number.
+
+12) RodCutter
+
+This algorithm determines the best way to cut a rod of n inches.  The code is commented well. Basically try all cuts from 1..N. Make the cut k and add it's value to the recursive call to f(n-k).
+
+13) Subsets - not a classic dp, but interesting and uses same problem solving skills as all dp problems.
+
+Prints all subsets of a string.  The idea here is to recognize what the recursion tree looks like for subsets. To build a full recursive tree where the leaves represent subsets, you simulate selecting at i and not selecting at i. So f(i+1) and f(i+1).  We use a stack to hold items selected at i.
+
+The first recursive call represents not selecting at i, therefore we do nothing. The second recursive call represents selecting at i, therefore we push it on the stack.  After that branch returns we are done with i so pop it from the stack. The base case is when we are out of items to evaluate--at the base case stack will contain the recusively built subsets. Print them here.
+
+It's easier to convince yourself of this by drawing out the recursion tree for a small array of size three.
+
+If the array is processed from left to right, looking at the recursion tree reveals the leaf nodes to be 2^n. So for an array of length 3 there exists 2^3 leaf nodes. 8 leaf nodes from 0 to 7.
+
+Viewing the problem like this shows there is another way to generate subsets. Just generate the leaves without building the recursion tree. So do it bottom up.
+
+Let's say the array is "abc". View "abc" as a bit string where 0 = unselected and 1 = selected.  There are 2^n subsets, 0 to 7, like this.
+
+   a  b  c
+-----------
+0  0  0  0
+1  0  0  1
+2  0  1  0
+3  0  1  1
+4  1  0  0
+5  1  0  1
+6  1  1  0
+7  1  1  1
+
+The bottom up version simply evaluates an integer, i, from 0 to 2^n - 1, mapping i's bit pattern to items in the array. If a bit in i is 1, the array item at that position is included in the subset. Otherwise it's not.
+
+The idea of selecting and not selecting is common to a lot of DP problems like knapsack, etc.
+
+14) ThreeNumberSum
+
+This algorithm again is a modification of the knapsack algorithm - selecting at i and not selecting at i. Here the problem is to find 3 numbers in an array that add to sum. Same as knapsack - when selecting at i, subtract it's value from sum and recursively evaluate the next item in the array.
+
+The base case is when 3 numbers are selected and sum = 0. The other base case is when sum < 0 and no more items to evaluate. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
 
