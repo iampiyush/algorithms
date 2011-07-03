@@ -6,56 +6,56 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /*
-      Dijkstra Shortest Path
+  Dijkstra Shortest Path
 
-      Objects:
+  Objects:
 
-      1) Graph - represents the graph as an array of vertices. Each vertex has an adjacency list (linked list).
-      The adjacency list is represented as a list of edges.
+  1) Graph - represents the graph as an array of vertices. Each vertex has an adjacency list (linked list).
+  The adjacency list is represented as a list of edges.
 
-      2) Vertex - holds the name of the vertex, it's index in the graph, and it's list of edges. Vertex
-      also allows itself to be marked as done.
+  2) Vertex - holds the name of the vertex, it's index in the graph, and it's list of edges. Vertex
+  also allows itself to be marked as done.
 
-      3) Edge -  represents an edge as a from index and to index, along with the edge weight.
+  3) Edge -  represents an edge as a from index and to index, along with the edge weight.
 
-      4) Node - represents a parent index and distance from the source.  The shortest path algorithm
-      uses this to hold the shortest path tree from the source vertex to all other vertices.
+  4) Node - represents a parent index and distance from the source.  The shortest path algorithm
+  uses this to hold the shortest path tree from the source vertex to all other vertices.
 
-      5) Parent array of nodes.
+  5) Parent array of nodes.
 
-      The algorithm works like this:
+  The algorithm works like this:
 
-      1) Initialize the parent array.
+  1) Initialize the parent array.
 
-      2) Initialize the min heap of vertex indices. This is a min heap using the current distance.
-      The comparator for this heap is MinHeapComparator which looks into the parent array to get
-      the current distance of a given vertice.
+  2) Initialize the min heap of vertex indices. This is a min heap using the current distance.
+  The comparator for this heap is MinHeapComparator which looks into the parent array to get
+  the current distance of a given vertice.
 
-      3) The source vertex's distance is set to 0 since it's 0 distance to get from source to source.
+  3) The source vertex's distance is set to 0 since it's 0 distance to get from source to source.
 
-      4) The min heap contains all vertex indices and the parent array contains a node object for each
-      vertice in the graph. All node.distance = MAX_INT and parents are -1 except the source.
+  4) The min heap contains all vertex indices and the parent array contains a node object for each
+  vertice in the graph. All node.distance = MAX_INT and parents are -1 except the source.
 
-      5) While min heap has items do this:
+  5) While min heap has items do this:
 
-      -Extract min vertex (vertice with least distance from source)
+  -Extract min vertex (vertice with least distance from source)
 
-      -For each adjacent vertice, relax it. To avoid loops only process the adjacent vertex if it hasn't
-      been processed aleady.
+  -For each adjacent vertice, relax it. To avoid loops only process the adjacent vertex if it hasn't
+  been processed aleady.
 
-      -Mark min vertex as done.
+  -Mark min vertex as done.
 
-      6) The inner loop walks through each edge, updating distances if needed.
+  6) The inner loop walks through each edge, updating distances if needed.
 
-      -If from.distance + weight is less than to.distance, then we've found a shorter path.
-      Set to.distance = from.distance + weight.
+  -If from.distance + weight is less than to.distance, then we've found a shorter path.
+  Set to.distance = from.distance + weight.
 
-      -Objects are updated in the parent array.
+  -Objects are updated in the parent array.
 
-      -If the distance was changed in parent array, we need to heapify the min heap. Currently
-      I'm not aware of a heapify method on the java heap implementation I'm using - so I just
-      flush and reinsert everything into the heap. Obviously only useful for testing the correctness of the
-      remaining parts of the algorithm.
+  -If the distance was changed in parent array, we need to heapify the min heap. Currently
+  I'm not aware of a heapify method on the java heap implementation I'm using - so I just
+  flush and reinsert everything into the heap. Obviously only useful for testing the correctness of the
+  remaining parts of the algorithm.
 
 **/
 class DijkstraShortestPath {

@@ -4,20 +4,20 @@ public class Edge {
     private int mWeight;
 
     public Edge(int from, int to, int weight) {
-	mFromIndex = from;
-	mToIndex = to;
-	mWeight = weight;
+        mFromIndex = from;
+        mToIndex = to;
+        mWeight = weight;
     }
     
     public int getTo() {
-	return mToIndex;
+        return mToIndex;
     }
     
     public int getFrom() {
-	return mFromIndex;
+        return mFromIndex;
     }
     
     public int getWeight() {
-	return mWeight;
+        return mWeight;
     }
 }

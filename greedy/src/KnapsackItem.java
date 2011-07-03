@@ -4,33 +4,33 @@ public class KnapsackItem implements Comparable<KnapsackItem> {
     private double mValuePerPound;
 
     public KnapsackItem(int value, int weight) {
-	mValue = value;
-	mWeight = weight;
-	mValuePerPound = (double)mValue / mWeight;
+        mValue = value;
+        mWeight = weight;
+        mValuePerPound = (double)mValue / mWeight;
     }
     
     public int getWeight() {
-	return mWeight;
+        return mWeight;
     }
 
     public int getValue() {
-	return mValue;
+        return mValue;
     }
     
     public double getValuePerPound() {
-	return mValuePerPound;
+        return mValuePerPound;
     }
     
     //Sorts in decreasing order
     public int compareTo(KnapsackItem i) {
-	double d = i.getValuePerPound() - getValuePerPound();
+        double d = i.getValuePerPound() - getValuePerPound();
 	
-	if (d < 0)
-	    return -1;
+        if (d < 0)
+            return -1;
 	
-	if (d > 0)
-	    return 1;
+        if (d > 0)
+            return 1;
 	
-	return 0;
+        return 0;
     }
 }
