@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 /*
   Graph representing the game.
- */
+*/
 class GameGraph {
 
     private class Vertex {

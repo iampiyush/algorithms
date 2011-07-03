@@ -11,7 +11,7 @@ import com.rreeves.game.SpotType;
   The game consists of an nxn board, where each spot on the board
   is either the start, empty, a wall, or the end.
 
- */
+*/
 public class MainProgram {
 
     private static void escapeMazeTest() {
@@ -29,5 +29,5 @@ public class MainProgram {
 
     public static void main(String []args) {
         escapeMazeTest();
-   }
+    }
 }

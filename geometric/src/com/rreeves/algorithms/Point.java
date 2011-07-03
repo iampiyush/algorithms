@@ -6,26 +6,26 @@ public class Point {
     private int mY;
     
     public Point(int x, int y) {
-	this(x, y, "");
+        this(x, y, "");
     }
 
     public Point(int x, int y, String name) {
-	mX = x;
-	mY = y;
-	mName = name;
+        mX = x;
+        mY = y;
+        mName = name;
     }
     
     public int getX() {
-	return mX;
+        return mX;
     }
     
     public int getY() {
-	return mY;
+        return mY;
     }
     
     @Override
     public String toString() {
-	return mName;
+        return mName;
     }
     
     /* 
@@ -37,10 +37,10 @@ public class Point {
        Returns 0 if points a and b are collinear.
     */
     public int getOrientation(Point a, Point b) {
-	int ax = a.getX() - mX;
-	int ay = a.getY() - mY;
-	int bx = b.getX() - mX;
-	int by = b.getY() - mY;
-	return (ay*bx) - (by*ax);
+        int ax = a.getX() - mX;
+        int ay = a.getY() - mY;
+        int bx = b.getX() - mX;
+        int by = b.getY() - mY;
+        return (ay*bx) - (by*ax);
     }
 }

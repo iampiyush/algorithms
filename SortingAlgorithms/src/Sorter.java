@@ -3,9 +3,7 @@ import com.rreeves.sorting.QuickSort;
 import java.util.Random;
 
 public class Sorter {
-
     static private int[] createRandomArray() {
-
         int[] arr = new int[99990];
 
         Random rand = new Random();
@@ -13,6 +11,7 @@ public class Sorter {
         for (int i = 0; i < arr.length; ++i) {
             arr[i] = rand.nextInt(500);
         }
+        
         return arr;
     }
 

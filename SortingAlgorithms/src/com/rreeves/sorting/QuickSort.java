@@ -14,7 +14,7 @@ public class QuickSort {
 
     /*
       Partitions the array around pivot and recursively sorts each half.
-     */
+    */
     private void recursiveSort(int []arr, int start, int end) {
         if (start > end)
             return;

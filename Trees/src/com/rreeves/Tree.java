@@ -20,7 +20,7 @@ public class Tree {
 
     /*
       Inserts val into the tree.
-     */
+    */
     public void insert(int val) {
         if (mRoot == null) {
             mRoot = new Node(val);
@@ -39,32 +39,32 @@ public class Tree {
 
     /*
       Randomizes the tree, likely removing the BST property.
-     */
+    */
     public void randomize() {
         if (mRand == null)
             mRand = new Random();
 
         randomize(mRoot);
-   }
+    }
 
     /*
       Returns true if tree is a BST, otherwise false.
       Treats a null tree as BST.
-     */
+    */
     public boolean isBst() {
         return validateBstProperty(mRoot, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
     /*
       Finds maximum depth of tree
-     */
+    */
     public int getMaxDepth() {
         return getMaxDepth(mRoot);
     }
 
     /*
       Prints tree level by level
-     */
+    */
     public void printLevelOrder() {
         Queue<Node> q = new LinkedList<Node>();
         q.add(mRoot);
@@ -85,7 +85,7 @@ public class Tree {
 
     /*
       Prints tree in order
-     */
+    */
     public void printInOrder() {
         printInOrder(mRoot);
     }

@@ -9,7 +9,7 @@ import java.util.Stack;
 /*
   EscapeMaze - finds a path from start to end using a BFS algorithm.
 
- */
+*/
 public class EscapeMaze {
 
     private VertexColor []mVisited;
@@ -38,7 +38,7 @@ public class EscapeMaze {
       Each move from a spot is an edge.
       Spots can only move to their adjacent neighbors.
       No diagonal moves allowed.
-     */
+    */
     public void initGraph(SpotType [][]board) {
         //Create vertices
         for (int row = 0; row < board.length; row++) {
@@ -130,7 +130,7 @@ public class EscapeMaze {
       Each vertice is pushed onto a stack.
 
       Popping vertices from stack creates path start to end
-     */
+    */
     private void printPath(int endVertex) {
         Stack<Integer> stack = new Stack<Integer>();
 
@@ -171,7 +171,7 @@ public class EscapeMaze {
       4) As vertices are added to the queue, mark their parent in the parent array.
       4) When the end is reached, print the path using the parent array.
 
-     */
+    */
     public void printShortestPath(int startVertex) {
         if (mGraph.getVertexType(startVertex) != SpotType.START)
             return;
