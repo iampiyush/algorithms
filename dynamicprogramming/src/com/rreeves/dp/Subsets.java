@@ -14,25 +14,25 @@ public class Subsets {
 
       A stack is used to hold the current subset.  Base case is
       when no more characters are available to evaluate.
-     */
+    */
     public void printTopdown(String str) {
-	Stack<Character> stack = new Stack<Character>();
-	printRecursive(0, str, stack);
+        Stack<Character> stack = new Stack<Character>();
+        printRecursive(0, str, stack);
     }
 
     private void printRecursive(int i, String str, Stack<Character> stack) {
-	if (i == str.length()) {
-	    System.out.println(stack.toString());
-	    return;
-	}
+        if (i == str.length()) {
+            System.out.println(stack.toString());
+            return;
+        }
 	 
-	printRecursive(i+1, str, stack);
+        printRecursive(i+1, str, stack);
 
-	stack.push(str.charAt(i));
+        stack.push(str.charAt(i));
 
-	printRecursive(i+1, str, stack);
+        printRecursive(i+1, str, stack);
 
-	stack.pop();
+        stack.pop();
     }
     
     /*
@@ -46,28 +46,28 @@ public class Subsets {
       is 1, the character is in the subset. If abc is the string, then 
       001 maps to the subset "c", 010 maps to "b", 011 maps to "bc", ..., 111 maps to "abc".
       
-     */
+    */
     public void printBottomup(String str) {
-	Stack<Character> stack = new Stack<Character>();
+        Stack<Character> stack = new Stack<Character>();
 
-	double numberSubsets = Math.pow(2, str.length()) - 1;
+        double numberSubsets = Math.pow(2, str.length()) - 1;
     	for (int i = 0; i <= numberSubsets; ++i) {
-	    printBitPattern(str, i, stack);
-	}
+            printBitPattern(str, i, stack);
+        }
     }
     
     private void printBitPattern(String str, int n, Stack<Character> subset) {
-	int len = str.length();
-	int bit = len-1;
-	subset.clear();
+        int len = str.length();
+        int bit = len-1;
+        subset.clear();
 
-	for (int i = 0; i < len; ++i) {
-	    if (((n>>bit) & 1) == 1) {
-		subset.push(str.charAt(i));
-	    }
-	    bit--;
-	}
+        for (int i = 0; i < len; ++i) {
+            if (((n>>bit) & 1) == 1) {
+                subset.push(str.charAt(i));
+            }
+            bit--;
+        }
 
-	System.out.println(subset.toString());
+        System.out.println(subset.toString());
     }
 }

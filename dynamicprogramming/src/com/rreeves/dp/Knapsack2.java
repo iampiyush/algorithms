@@ -6,9 +6,9 @@ public class Knapsack2 {
     private int mCapacity;
     
     public Knapsack2(int[] weights, int []values, int capacity) {
-	mWeights = weights;
-	mValues = values;
-	mCapacity = capacity;
+        mWeights = weights;
+        mValues = values;
+        mCapacity = capacity;
     }
     
     /*
@@ -25,46 +25,46 @@ public class Knapsack2 {
     */
     public int fillSack() {
         int [][]table = new int[mCapacity+1][mWeights.length];
-	for (int i = 0; i < table.length; ++i) {
-	    for (int j = 0; j < table[0].length; ++j) {
-		table[i][j] = -1;
-	    }
-	}
+        for (int i = 0; i < table.length; ++i) {
+            for (int j = 0; j < table[0].length; ++j) {
+                table[i][j] = -1;
+            }
+        }
 
-	return fillSackRecursive(mCapacity, mWeights.length, table);
+        return fillSackRecursive(mCapacity, mWeights.length, table);
     }
     
     private int fillSackRecursive(int c, int i, int [][]table) {
-	if (c <= 0 || i == 0)
-	    return 0;
+        if (c <= 0 || i == 0)
+            return 0;
 
-	if (getWeight(i) > c) {
-	    if (table[c][i-1] == -1)
-		table[c][i-1] = fillSackRecursive(c, i-1, table);
+        if (getWeight(i) > c) {
+            if (table[c][i-1] == -1)
+                table[c][i-1] = fillSackRecursive(c, i-1, table);
 
-	    return table[c][i-1];
+            return table[c][i-1];
 
-	} else {
-	    if (table[c][i-1] == -1)
-		table[c][i-1] = fillSackRecursive(c, i-1, table);
+        } else {
+            if (table[c][i-1] == -1)
+                table[c][i-1] = fillSackRecursive(c, i-1, table);
 	    
-	    int unselected = table[c][i-1];
+            int unselected = table[c][i-1];
 	    
-	    int reducedCapacity = c - getWeight(i);
-	    if (table[reducedCapacity][i-1] == -1) 
-		table[reducedCapacity][i-1] = fillSackRecursive(reducedCapacity, i-1, table);
+            int reducedCapacity = c - getWeight(i);
+            if (table[reducedCapacity][i-1] == -1) 
+                table[reducedCapacity][i-1] = fillSackRecursive(reducedCapacity, i-1, table);
 
-	    int selected = getValue(i) + table[reducedCapacity][i-1];
+            int selected = getValue(i) + table[reducedCapacity][i-1];
 
-	    return Math.max(unselected, selected);
-	}
+            return Math.max(unselected, selected);
+        }
     }
      
     private int getWeight(int i) {
-	return mWeights[i-1];
+        return mWeights[i-1];
     }
     
     private int getValue(int i) {
-	return mValues[i-1];
+        return mValues[i-1];
     }
 }

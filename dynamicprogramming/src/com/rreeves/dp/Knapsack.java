@@ -7,13 +7,13 @@ public class Knapsack {
     private int mCapacity;
 
     public Knapsack(int[] weights, int []values, int capacity) {
-	if (weights.length != values.length)
-	    throw new IllegalArgumentException();
+        if (weights.length != values.length)
+            throw new IllegalArgumentException();
 	
-	mCapacity = capacity;
-	mWeights = weights;
-	mValues = values;
-	mLength = mValues.length;
+        mCapacity = capacity;
+        mWeights = weights;
+        mValues = values;
+        mLength = mValues.length;
     }
     
     /*
@@ -25,42 +25,42 @@ public class Knapsack {
       of recomputing them.
     */
     public int fillSackFaster() {
-	int [][]table = new int[mCapacity+1][mValues.length+1];
-	for (int i = 0; i < table.length; ++i) {
-	    for (int j = 0; j < table[0].length; ++j) {
-		table[i][j] = -1;
-	    }
-	}
-	return fillSackRecursive(mCapacity, 0, table);
+        int [][]table = new int[mCapacity+1][mValues.length+1];
+        for (int i = 0; i < table.length; ++i) {
+            for (int j = 0; j < table[0].length; ++j) {
+                table[i][j] = -1;
+            }
+        }
+        return fillSackRecursive(mCapacity, 0, table);
     }
 
     private int fillSackRecursive(int capacity, int i, int[][] table) {
-	if (i == mLength) {
-	    if (table[capacity][i] == -1)
-		table[capacity][i] = 0;
+        if (i == mLength) {
+            if (table[capacity][i] == -1)
+                table[capacity][i] = 0;
 
-	    return 0;
-	}
+            return 0;
+        }
 	
-	if (capacity < mWeights[i]) {
-	    if (table[capacity][i+1] == -1) 
-		table[capacity][i+1] = fillSackRecursive(capacity, i+1, table);
+        if (capacity < mWeights[i]) {
+            if (table[capacity][i+1] == -1) 
+                table[capacity][i+1] = fillSackRecursive(capacity, i+1, table);
 	    
-	    return table[capacity][i+1];
+            return table[capacity][i+1];
 
-	} else {
-	    if (table[capacity][i+1] == -1)
-		table[capacity][i+1] = fillSackRecursive(capacity, i+1, table);
+        } else {
+            if (table[capacity][i+1] == -1)
+                table[capacity][i+1] = fillSackRecursive(capacity, i+1, table);
 
-	    int unselected = table[capacity][i+1];
+            int unselected = table[capacity][i+1];
 
-	    if (table[capacity - mWeights[i]][i+1] == -1)
-		table[capacity - mWeights[i]][i+1] = fillSackRecursive(capacity-mWeights[i], i+1, table);
+            if (table[capacity - mWeights[i]][i+1] == -1)
+                table[capacity - mWeights[i]][i+1] = fillSackRecursive(capacity-mWeights[i], i+1, table);
 	    
-	    int selected = mValues[i] + table[capacity-mWeights[i]][i+1];
+            int selected = mValues[i] + table[capacity-mWeights[i]][i+1];
 
-	    return Math.max(unselected, selected);
-	}
+            return Math.max(unselected, selected);
+        }
     }
 
     /*
@@ -72,23 +72,23 @@ public class Knapsack {
       value.
     */
     public int fillSackSlow() {
-	return fillSackRecursive(mCapacity,0);
+        return fillSackRecursive(mCapacity,0);
     }
 
     private int fillSackRecursive(int capacity, int i) {
-	if (i == mLength) 
-	    return 0;
+        if (i == mLength) 
+            return 0;
 
-	if (mWeights[i] > capacity) {
-	    return fillSackRecursive(capacity, i+1);
-	} 
+        if (mWeights[i] > capacity) {
+            return fillSackRecursive(capacity, i+1);
+        } 
 	
-	int unselect = fillSackRecursive(capacity, i+1);
+        int unselect = fillSackRecursive(capacity, i+1);
 
-	int newWeight = capacity - mWeights[i];
-	int selected = mValues[i] + fillSackRecursive(newWeight, i+1);
+        int newWeight = capacity - mWeights[i];
+        int selected = mValues[i] + fillSackRecursive(newWeight, i+1);
 
-	return Math.max(unselect, selected);
+        return Math.max(unselect, selected);
     }
 }
 
