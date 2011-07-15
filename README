@@ -1,4 +1,3 @@
-Contains various algorithms written in Java.
+I produced the following code while brushing up on some CS basics. Each folder contains algorithms written in Java.  Most code is well commented with a driver program used to exercise the algorithm.  
 
-The code is structured with emphasis on showing how an algorithm works, which sometimes isn't exactly the best object oriented design best practice.  Most code contains comments and includes a driver program to exercise the algorithm.
-
+The code is structured in a way that shows how the algorithm works with minimal fluff. 
