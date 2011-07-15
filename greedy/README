@@ -1,1 +1,5 @@
-Algorithm to solve fractional knapsack problem.
+Two greedy algoritms:
+
+1) Knapsack problem that allows fractional amounts. 
+
+2) Dijkstra's shortest path in a graph.
