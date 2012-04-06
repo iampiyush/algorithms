@@ -25,8 +25,10 @@ public class EditDistance {
     }
     
     private int getTableValue(int [][]table, int i, int j) {
-        if (i < 0 || j < 0) 
-            return 0;
+        if (i < 0)
+            return j+1;
+	if (j < 0)
+	    return i+1;
 
         return table[i][j];
     }
@@ -46,8 +48,10 @@ public class EditDistance {
     }
 
     private int calcDistanceRecursive(int i, int j, char[] one, char[] two, int [][]table) {
-        if (i < 0 || j < 0)
-            return 0;
+        if (i < 0)
+            return j+1;
+	if (j < 0)
+	    return i+1;
 
         if (one[i] == two[j]) {
             return calcDistanceMemoize(i-1, j-1, one, two, table);
@@ -62,8 +66,10 @@ public class EditDistance {
     
     //helper function that calls calcDistanceRecursive and tables results.
     private int calcDistanceMemoize(int i, int j, char[] one, char[] two, int [][]table) {
-        if (i < 0 || j < 0)
-            return 0;
+        if (i < 0)
+            return j+1;
+	if (j < 0)
+	    return i+1;
 
         if (table[i][j] == -1) 
             table[i][j] = calcDistanceRecursive(i, j, one, two, table);

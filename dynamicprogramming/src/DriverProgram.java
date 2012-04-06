@@ -120,8 +120,8 @@ public class DriverProgram {
     public static void longestIncreasingSubsequenceTest() {
         LIS lis = new LIS();
 
-        int []arr = {0, 10, 1, 2, 3, 9, 0, 9, 0, 0, 10, 12, 15, 0};
-	
+        //int []arr = {0, 10, 1, 2, 3, 9, 0, 9, 0, 0, 10, 12, 15, 0};
+	    int []arr = {9, 4, 3, 2, 5, 4, 3, 2};
         int ret = lis.calculate(arr);
 	
         System.out.println("Longest increasing subsequence is " + ret);
@@ -145,8 +145,16 @@ public class DriverProgram {
     
     public static void editDistanceTest() {
         EditDistance ed = new EditDistance();
-        int numberEdits = ed.calcDistance("Ryan", "Ri0n3");
+        int numberEdits = ed.calcDistance("audacity", "udacity");
+        System.out.println("Number of edits = " + String.valueOf(numberEdits));
+
+        numberEdits = ed.calcDistance("audacity", "Udacity");
+        System.out.println("Number of edits = " + String.valueOf(numberEdits));
+
+        numberEdits = ed.calcDistance("peter", "sarah");
+        System.out.println("Number of edits = " + String.valueOf(numberEdits));
 	
+        numberEdits = ed.calcDistance("pete", "peter");
         System.out.println("Number of edits = " + String.valueOf(numberEdits));
     }
 
@@ -174,6 +182,6 @@ public class DriverProgram {
     }
 
     public static void main(String []args) {
-        threeNumbersThatSumTest();
+	    editDistanceTest();
     }
 }

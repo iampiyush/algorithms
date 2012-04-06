@@ -39,7 +39,7 @@ public class LIS {
     private int longestToN(int n, int []arr, int []table) {
         int m = 0;
         for (int i = n; i >= 0; --i) {
-            if (arr[i] < arr[n]) {
+            if (arr[i] > arr[n]) {
 
                 if (table[i] == -1) {//Memoize
                     table[i] = longestToN(i, arr, table);
